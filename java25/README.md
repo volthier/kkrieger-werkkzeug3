@@ -24,3 +24,16 @@ The Java 25 migration will lean on modern JVM capabilities. The `com.werkkzeug3.
 ```bash
 ./gradlew :java25:build
 ```
+
+## Run Locally
+
+This module currently provides libraries only. To run locally:
+
+1. Ensure Java 25 is installed (or let Gradle toolchains download it).
+2. Build the module to compile the sources:
+
+```bash
+./gradlew :java25:build
+```
+
+3. Use the compiled classes as a dependency in a launcher project or add an application entry point as new migration work lands.
