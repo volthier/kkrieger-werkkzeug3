@@ -74,6 +74,12 @@ public final class FixedMath {
         0x2d413ccc,
     };
 
+    static {
+        if (SIN_TABLE.length != SIN_TAB_SIZE + 1) {
+            throw new ExceptionInInitializerError("Unexpected sine table length: " + SIN_TABLE.length);
+        }
+    }
+
     private FixedMath() {
     }
 
@@ -109,6 +115,9 @@ public final class FixedMath {
     }
 
     public static int intSqrt15D(int value) {
+        if (value == 0) {
+            return 0;
+        }
         int leading = countLeadingZeroes(value);
         long unsigned = value & 0xffffffffL;
         long x = (unsigned << (leading + 1)) & 0xffffffffL;
@@ -125,6 +134,9 @@ public final class FixedMath {
     }
 
     public static int iSqrt15D(int value) {
+        if (value == 0) {
+            return 0;
+        }
         int leading = countLeadingZeroes(value);
         long unsigned = value & 0xffffffffL;
         long x = (unsigned << (leading + 1)) & 0xffffffffL;
