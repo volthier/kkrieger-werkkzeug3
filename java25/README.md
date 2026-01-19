@@ -19,6 +19,25 @@ The original C++ math routines live in `werkkzeug3_kkrieger/_intmath.*`. This Ja
 
 The Java 25 migration will lean on modern JVM capabilities. The `com.werkkzeug3.gpu` package starts the groundwork for native GPU interop using the Java 25 FFM API, so higher-level rendering and compute layers can bind to Vulkan/Metal/DirectX without JNI glue.
 
+## Migration Order (Original Parity)
+
+To mirror the original engine's integration order, the Java 25 migration will proceed in this sequence:
+
+1. Runtime bootstrap and core math
+2. Procedural generation pipeline (materials, meshes, scenes)
+3. Audio pipeline (decode, mix, sync)
+4. Rendering backend (platform GPU bridge + rendering graph)
+
+This preserves the original dependency order while keeping results consistent.
+
+## Platform GPU Targets
+
+The rendering stack will target:
+
+- **Apple Silicon (M2/ARM)**: Metal
+- **Windows**: DirectX 12 (primary), Vulkan (fallback)
+- **Linux/Other ARM**: Vulkan
+
 ## Build
 
 ```bash
